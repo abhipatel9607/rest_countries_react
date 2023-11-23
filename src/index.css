@@ -4,7 +4,7 @@
 	--primary-bg: #fff;
 	--secondary-bg: #fafafa;
 	--primary-color: #0c0e0e;
-	--secondary-color: rgb(79, 79, 79);
+	--secondary-color: #4f4f4f;
 
 	/* Dark-theme */
 	/* --primary-bg: #2b3743;
@@ -249,4 +249,20 @@ body {
 	border-radius: 6px;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 	transition: 0.5s ease-in-out;
+}
+
+.svg-icon-moon {
+	fill: var(--primary-color);
+	transition: 0.5s ease-in-out;
+}
+.svg-icon-search {
+	fill: var(--secondary-color);
+	transition: 0.5s ease-in-out;
+}
+
+.theme-btn-box {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	cursor: pointer;
 }

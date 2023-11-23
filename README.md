@@ -22,7 +22,7 @@ This project is a web application that integrates with the REST Countries API to
 
 ## Demo
 
-[Live Demo](https://rest-countries-react-abhishek.app)
+[Live Demo](https://rest-countries-react-abhishek.netlify.app/)
 
 ## Technologies Used
 

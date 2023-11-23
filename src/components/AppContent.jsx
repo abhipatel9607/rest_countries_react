@@ -11,6 +11,7 @@ function AppContent() {
 		fetch("https://restcountries.com/v3.1/all")
 			.then((countriesResponse) => countriesResponse.json())
 			.then((countriesData) => {
+				console.log(countriesData);
 				setCurCountries(countriesData);
 				setAllCountries(countriesData);
 			})
