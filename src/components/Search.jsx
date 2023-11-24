@@ -1,19 +1,32 @@
 /** @format */
 
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { CountriesContext } from "./AppContent";
 
 function Search() {
-  const [searchInput, setSearchInput] = useState("");
-
-  const { allCountries, setCurCountries } = useContext(CountriesContext);
+  const {
+    allCountries,
+    setCurCountries,
+    searchInput,
+    setSearchInput,
+    filterRegion,
+  } = useContext(CountriesContext);
 
   useEffect(() => {
-    const filteredCountries = allCountries.filter((country) =>
-      country.name.common.toLowerCase().includes(searchInput.toLowerCase())
-    );
+    // Logic for Filter & search work together
+    const filteredCountries = allCountries.filter((country) => {
+      const searchByRegion =
+        filterRegion !== "Filter by Region"
+          ? country.region === filterRegion
+          : true;
+      return (
+        country.name.common.toLowerCase().includes(searchInput.toLowerCase()) &&
+        searchByRegion
+      );
+    });
+
     setCurCountries(filteredCountries);
-  }, [searchInput, setCurCountries, allCountries]);
+  }, [searchInput, setCurCountries, allCountries, filterRegion]);
 
   return (
     <div className="search-box">

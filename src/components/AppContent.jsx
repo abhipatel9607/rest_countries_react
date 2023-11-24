@@ -10,12 +10,13 @@ export const CountriesContext = createContext();
 export const AppContent = () => {
   const [curCountries, setCurCountries] = useState([]);
   const [allCountries, setAllCountries] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
+  const [filterRegion, setFilterRegion] = useState("Filter by Region");
 
   useEffect(() => {
     fetch("https://restcountries.com/v3.1/all")
       .then((countriesResponse) => countriesResponse.json())
       .then((countriesData) => {
-        console.log(countriesData);
         setCurCountries(countriesData);
         setAllCountries(countriesData);
       })
@@ -23,7 +24,15 @@ export const AppContent = () => {
   }, []);
   return (
     <CountriesContext.Provider
-      value={{ curCountries, setCurCountries, allCountries }}
+      value={{
+        curCountries,
+        setCurCountries,
+        allCountries,
+        searchInput,
+        setSearchInput,
+        filterRegion,
+        setFilterRegion,
+      }}
     >
       <div className="main">
         <div className="container">
