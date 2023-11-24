@@ -1,23 +1,20 @@
-/* eslint-disable react/prop-types */
-import { createContext, useState, useContext } from "react";
+/** @format */
 
-const ThemeContext = createContext();
+import { createContext, useState } from "react";
 
-// eslint-disable-next-line react-refresh/only-export-components
-export const useTheme = () => {
-	return useContext(ThemeContext);
-};
+export const ThemeContext = createContext();
 
+// eslint-disable-next-line react/prop-types
 export const ThemeProvider = ({ children }) => {
-	const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("light");
 
-	const toggleTheme = () => {
-		setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
-	};
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+  };
 
-	return (
-		<ThemeContext.Provider value={{ theme, toggleTheme }}>
-			{children}
-		</ThemeContext.Provider>
-	);
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
 };

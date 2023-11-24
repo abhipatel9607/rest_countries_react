@@ -1,38 +1,40 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react/prop-types */
-import { useEffect, useState } from "react";
+/** @format */
 
-function Filter({ allCountries, setCurCountries }) {
-	const [filterRegion, setFilterRegion] = useState("Filter by Region");
+import { useEffect, useState, useContext } from "react";
+import { CountriesContext } from "./AppContent";
 
-	const regions = allCountries.reduce((acc, country) => {
-		acc.includes(country.region) ? null : acc.push(country.region);
-		return acc;
-	}, []);
-	regions.unshift("Filter by Region");
+function Filter() {
+  const [filterRegion, setFilterRegion] = useState("Filter by Region");
+  const { allCountries, setCurCountries } = useContext(CountriesContext);
 
-	useEffect(() => {
-		const filteredCountries =
-			filterRegion === "Filter by Region"
-				? allCountries
-				: allCountries.filter((country) => country.region === filterRegion);
-		setCurCountries(filteredCountries);
-	}, [filterRegion]);
-	return (
-		<div>
-			<select
-				className="filter"
-				onChange={(e) => setFilterRegion(e.target.value)}
-				value={filterRegion}
-			>
-				{regions.map((region, i) => (
-					<option key={i + 1} value={`${region}`}>
-						{region}
-					</option>
-				))}
-			</select>
-		</div>
-	);
+  const regions = allCountries.reduce((acc, country) => {
+    acc.includes(country.region) ? null : acc.push(country.region);
+    return acc;
+  }, []);
+  regions.unshift("Filter by Region");
+
+  useEffect(() => {
+    const filteredCountries =
+      filterRegion === "Filter by Region"
+        ? allCountries
+        : allCountries.filter((country) => country.region === filterRegion);
+    setCurCountries(filteredCountries);
+  }, [filterRegion, allCountries, setCurCountries]);
+  return (
+    <div>
+      <select
+        className="filter"
+        onChange={(e) => setFilterRegion(e.target.value)}
+        value={filterRegion}
+      >
+        {regions.map((region, i) => (
+          <option key={i + 1} value={`${region}`}>
+            {region}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
 }
 
 export default Filter;
