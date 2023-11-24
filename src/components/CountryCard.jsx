@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function CountryCard(props) {
   // eslint-disable-next-line react/prop-types
-  const { flags, name, population, region, capital } = props.country;
+  const { flags, name, population, region, capital, cca3 } = props.country;
   // eslint-disable-next-line react/prop-types
   const countryName = name?.common;
   // eslint-disable-next-line react/prop-types
@@ -12,7 +12,7 @@ function CountryCard(props) {
 
   return (
     <>
-      <Link to={`/country/${countryName}`} style={{ textDecoration: "none" }}>
+      <Link to={`/country/${cca3}`} style={{ textDecoration: "none" }}>
         <div className="countryCard">
           <img src={flag} alt="Flag" />
           <div className="countryCardDetail">
